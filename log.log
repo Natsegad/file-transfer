@@ -1,0 +1,5 @@
+time="2022-10-24T22:34:12+04:00" level=info msg=Start func="main.main()" file="main.go:6"
+time="2022-10-24T22:40:15+04:00" level=info msg="Start server !\n" func="file-share/transfer/internal/app.Start()" file="app.go:7"
+time="2022-10-24T22:40:15+04:00" level=info msg="Initialize Handlers !\n" func="file-share/transfer/internal/app.Start()" file="app.go:9"
+time="2022-10-24T22:40:33+04:00" level=info msg="Start server !" func="file-share/transfer/internal/app.Start()" file="app.go:7"
+time="2022-10-24T22:40:33+04:00" level=info msg="Initialize Handlers !" func="file-share/transfer/internal/app.Start()" file="app.go:9"
