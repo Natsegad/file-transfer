@@ -15,7 +15,7 @@ func Start() {
 
 	l.Info("Start initialize routers !")
 	router.Handle("POST", "/file-add", shttp.FileAddPage)
-	router.Handle("GET", "/file-add", shttp.GetAll)
+	router.Handle("GET", "/file-get", shttp.GetAll)
 
 	l.Info("Starting server port: 8080 !")
 	router.Run(":8080")
