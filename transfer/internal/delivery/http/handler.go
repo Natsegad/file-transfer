@@ -20,7 +20,7 @@ func FileAddPage(c *gin.Context) {
 		})
 		return
 	}
-	
+
 	file, fileHeader, err := c.Request.FormFile("file")
 	if err != nil {
 		l.Errorf("Error: %v \v", err)
@@ -35,13 +35,19 @@ func FileAddPage(c *gin.Context) {
 	data := make([]byte, fileHeader.Size)
 	file.Read(data)
 
-	dirPath, err := service.CreateDirectoryByUserName(userName)
-	if err != nil {
-		l.Errorf("%v ", err)
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": fmt.Sprintf("%v ", err),
-		})
-		return
+	dirPath := service.CreatePath(userName)
+
+	if !service.IsHaveDirectory(userName) {
+		dirPath, err = service.CreateDirectoryByUserName(userName)
+		if err != nil {
+			l.Errorf("%v ", err)
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": fmt.Sprintf("%v ", err),
+			})
+			return
+		}
+	} else {
+		l.Infof("user %s have", userName)
 	}
 
 	err = service.SaveImg(dirPath+"/"+fileHeader.Filename, data)
