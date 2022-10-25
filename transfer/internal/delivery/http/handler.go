@@ -13,6 +13,8 @@ func FileAddPage(c *gin.Context) {
 	l.Info("File add page \n")
 
 	userName := c.Request.FormValue("user")
+
+	// Проверка если userName пустой то смысла дальше исполнять код нет
 	if userName == "" {
 		l.Errorf("Error userName is empty !")
 		c.JSON(http.StatusBadRequest, gin.H{
