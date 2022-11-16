@@ -2,6 +2,7 @@ package http
 
 import (
 	"file-share/transfer/internal/service"
+	"file-share/transfer/pkg/compress"
 	"file-share/transfer/pkg/logs"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -52,7 +53,8 @@ func FileAddPage(c *gin.Context) {
 		l.Infof("user %s have", userName)
 	}
 
-	err = service.SaveImg(dirPath+"/"+fileHeader.Filename, data)
+	fileSavePath := dirPath + "\\" + fileHeader.Filename
+	err = service.SaveImg(fileSavePath, data)
 	if err != nil {
 		l.Errorf("%v ", err)
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -60,6 +62,8 @@ func FileAddPage(c *gin.Context) {
 		})
 		return
 	}
+
+	compress.CompressPng(fileSavePath)
 
 	c.JSON(200, gin.H{
 		"status": "ok",

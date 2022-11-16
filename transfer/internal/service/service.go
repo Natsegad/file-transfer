@@ -25,7 +25,7 @@ func SaveImg(fileName string, data []byte) error {
 }
 
 func CreatePath(user string) string {
-	return fmt.Sprintf("%s/%s/content", path, user)
+	return fmt.Sprintf("%s\\%s\\content", path, user)
 }
 
 // CreateDirectoryByUserName Создает директории по имени пользвателя: {username}/content/
